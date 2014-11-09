@@ -121,7 +121,6 @@ namespace shadowsocks_.net
         {
             if (encryptor == null)
             {
-                Console.WriteLine("Close() encryptor null");
                 return;
             }
             else
@@ -129,17 +128,27 @@ namespace shadowsocks_.net
                 encryptor.Dispose();
                 encryptor = null;
             }
+
             Console.WriteLine("close:" + connection.RemoteEndPoint.ToString());
-            connection.Shutdown(SocketShutdown.Send);
+            
+            if (connection != null)
+            {
+                try
+                {
+                    connection.Shutdown(SocketShutdown.Send);
+                }
+                catch (SocketException)
+                {
+                }
+            }
             if (remote != null)
             {
                 try
                 {
                     remote.Shutdown(SocketShutdown.Send);
                 }
-                catch (SocketException e)
+                catch (SocketException)
                 {
-                    Console.WriteLine(e.ToString());
                 }
             }
         }
