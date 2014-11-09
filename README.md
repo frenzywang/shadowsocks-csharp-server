@@ -8,7 +8,7 @@ Install
 
 Install Runtime .Net 2.0
 
-Download binary from here.
+Download binary from http://blog.mengsky.net/test/shadowsocks.net.rar.
 
 Edit config.json
 
